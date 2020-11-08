@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet,ScrollView, View, LayoutAnimation, TouchableOpacity, Text} from 'react-native';
+import { ActionConst, Actions } from 'react-native-router-flux';
 import Accordian from '../Components/Accordian';
 
 import {WebCallClass} from "../Components/WebCallClass";
@@ -53,7 +54,7 @@ update_Layout = (index) => {
     return (
       <View style={styles.container}>
             <View style={styles.header}>
-                    <TouchableOpacity style={styles.headerbtn}>
+                    <TouchableOpacity style={styles.headerbtn}  onPress={() => Actions.FilterScreen()}>
                         <Text style={{color:"#fff", fontSize: 18,}}> Filter </Text>
                     </TouchableOpacity>
                     </View>

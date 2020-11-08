@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, TouchableOpacity, Platform, Dimensions, Text, Image, Button, TextInput, KeyboardAvoidingView} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Platform, Dimensions, Text, Image, Button, TextInput, KeyboardAvoidingView, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {WebCallClass} from "../Components/WebCallClass";
 
 var WebCall = new WebCallClass();
 
+
+
 export default class LogIn extends Component {
     constructor(){
         super();
+        this.getData();
         this.state= {
             user:[],
-            pass:[]
+            pass:[],
+            token: "",
         }
     }
     
     
-    
+
+
+
     login = async () => {
       var result = await WebCall.login(this.state.user,this.state.pass)
         if (result === 1) {
 
             Actions.Main();
+            
 
         } else {
 
@@ -31,14 +38,37 @@ export default class LogIn extends Component {
 
     }
 
-     onLoginPress = () =>{
-
+     onLoginPress = async () =>{
+        this.setState({token:"abc123"})
+        await AsyncStorage.setItem('token','abc123')
+        await AsyncStorage.setItem('user',this.state.user)
+        await AsyncStorage.setItem('pass',this.state.pass)
 
 
 
         this.login()
 
 
+    }
+
+    getData = async () => {
+        try{
+            const value = await AsyncStorage.getItem('token')
+            const user = await AsyncStorage.getItem('user')
+            const pass = await AsyncStorage.getItem('pass')
+            if (value !== null){
+                this.setState({token:value})
+            }
+            if (user !== null){
+                this.setState({user})
+            }
+            if (pass !== null){
+                this.setState({pass})
+            }
+
+        } catch(e){
+
+        }
     }
 
   render() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, LayoutAnimation, Platform, Image, UIManager} from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, LayoutAnimation, Platform, Image, UIManager,} from "react-native";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -54,7 +54,6 @@ export default class Accordian extends Component{
             <TouchableOpacity activeOpacity={0.7} onPress={this.props.onClickFunction} style={styles.Btn}>
             <Text style={styles.Panel_Button_Text}>{this.props.item.make} {this.props.item.model}</Text>
                     <Text style={styles.Panel_Button_Text}>{this.props.item.price}$/day</Text>
-            
             </TouchableOpacity>
 
             <View style={{ height: this.state.updated_Height, overflow: 'hidden' }}>
@@ -76,10 +75,14 @@ export default class Accordian extends Component{
                                  <Text>
                                <Image source={require('../images/gas-station.png')} />
                                  {this.props.item.gas_desc}
+                                 
+                                 </Text>
+                                 <Text>
+                                 {this.props.item.cars_img}
                                  </Text>
                                  </View>
                                  <View style={{width:220,height:300,alignItems:"center",justifyContent:"center",}}>
-                                 <Image style={{  flex: 1, width: '100%', height:  '1000%',resizeMode: 'contain'}} source={require('../images/ford_focus.png')}/>
+                                 <Image style={{  flex: 1, width: '100%', height:  '1000%',resizeMode: 'contain',}} source={this.props.item.cars_img}/>
                               </View>
             
             </View>

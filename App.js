@@ -29,6 +29,8 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Filter from './Screens/FilterScreen';
+import CarSize from './Screens/CarSize';
 
 export default class App extends Component {
   render() {
@@ -38,6 +40,8 @@ export default class App extends Component {
           <Scene key="LogIN" component={LogIn} title="LogIn" initial={true} hideNavBar={true} />
           <Scene key="Register" component={Register} title="Register" />
           <Scene key="Main" component={Main} title="Main" />
+          <Scene key= "FilterScreen" component={Filter} title="Filter"/>
+          <Scene key = "CarSize" component={CarSize} title="CarSize"/>
         </Scene>
       </Router>
     )
