@@ -1,40 +1,57 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {WebCallClass} from "../Components/WebCallClass";
 
-
-
+var WebCall = new WebCallClass();
 
 class CarSize extends Component {
     constructor(props){
         super(props);
         this.state= {
             element: [ {category:"compact", id:1,
-                image: require("../images/bmw_x3.png"),
+                image: require("../images/mercedesmlSUV2.png"),
                 },
                 {category:"SUV",
                     id:2,
-                    image: require("../images/bmw_x3.png"),},
+                    image: require("../images/mercedesmlSUV2.png"),},
                    
-                {category:"sedan", id:3,image: require("../images/bmw_x3.png"),},
+                {category:"sedan", id:3,image: require("../images/mercedesmlSUV2.png"),},
                     
-                {category:"sport", id:4,image: require("../images/bmw_x3.png"),}
+                {category:"sport", id:4,image: require("../images/mercedesmlSUV2.png"),}
                   
-            ]
+            ],
+            data:[],
         }
     }
+    componentDidMount(){
+
+
+        this.Categories();
+    
+    }
+    
+    Categories = async () => {
+     var   result = await WebCall.Categories()
+          alert(result)
+    
+        this.setState({data:result})
+    
+    }
+    
 
     render(){
     return(
         <View style={styles.container}>
             <FlatList
                 numColumns={2}
-                keyExtractor={(item) => item.id}
-                data={this.state.element}
+                keyExtractor={(item) => item.class_id}
+                data={this.state.data}
                 renderItem={({item}) =>(
-                    <Text style={styles.item}>
-                        {item.category}
-                        <Image style={{  flex: 1, resizeMode: 'contain', }} source={item.image} />
-                    </Text>
+                   <Text style={styles.item}>
+                                                        {item.name}
+                                                            </Text>
+                    
+                                
 
                 )}/>
         </View>

@@ -14,7 +14,7 @@ export  class WebCallClass {
     let a = '';
 
     try {
-      const response = await fetch('http://192.168.1.135/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -50,7 +50,7 @@ export  class WebCallClass {
     let raspuns = '';
 
     try {
-      const response = await fetch('http://192.168.1.135/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -91,13 +91,50 @@ export  class WebCallClass {
     let raspuns2 = '';
 
     try {
-      const response = await fetch('http://192.168.1.135/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
         body: JSON.stringify({
 
           req: 'cars'
+        })
+      });
+      const responseToJson = await response.json();
+
+
+
+      raspuns2 = responseToJson;
+
+    }
+    catch (error) {
+   alert(error)
+      // ResultData.status = 0;
+      // ResultData.mes = error;
+
+      console.debug(['eroare logare'], error)
+      raspuns2 = 0;
+    }
+
+
+    return raspuns2;
+
+
+
+
+  }
+
+  async Categories(){
+    let raspuns2 = '';
+
+    try {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
+        timeout: 500000000,
+        body: JSON.stringify({
+
+          req: 'categories'
         })
       });
       const responseToJson = await response.json();

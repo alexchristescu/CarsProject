@@ -11,7 +11,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import LogIn from './Screens/LogIn';
 import Register from './Screens/Register';
 import Main from './Screens/Main';
-
+import { AsyncStorage } from 'react-native';
 
 import {
   SafeAreaView,
@@ -33,13 +33,28 @@ import Filter from './Screens/FilterScreen';
 import CarSize from './Screens/CarSize';
 
 export default class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      hasToken : false,
+    }
+  }
+
+componentDidMount(){
+  AsyncStorage.getItem('token').then((token) => {
+    this.setState({hasToken: token !== null, isLoaded: true })
+  });
+}
+
+
   render() {
+    
     return (
       <Router>
         <Scene key="root">
-          <Scene key="LogIN" component={LogIn} title="LogIn" initial={true} hideNavBar={true} />
+          <Scene key="LogIN" initial={!this.state.hasToken} component={LogIn} title="LogIn" initial={true} hideNavBar={true} />
           <Scene key="Register" component={Register} title="Register" />
-          <Scene key="Main" component={Main} title="Main" />
+          <Scene key="Main" initial={this.state.hasToken} component={Main} title="Main" />
           <Scene key= "FilterScreen" component={Filter} title="Filter"/>
           <Scene key = "CarSize" component={CarSize} title="CarSize"/>
         </Scene>

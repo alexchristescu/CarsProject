@@ -48,6 +48,7 @@ export default class Accordian extends Component{
   
   render() {
 
+          let imglink = 'http://192.168.2.229/CarRent/images/' 
     return (
         <View style={styles.Panel_Holder}>
             
@@ -78,11 +79,11 @@ export default class Accordian extends Component{
                                  
                                  </Text>
                                  <Text>
-                                 {this.props.item.cars_img}
+                                 {imglink + this.props.item.cars_img}
                                  </Text>
                                  </View>
                                  <View style={{width:220,height:300,alignItems:"center",justifyContent:"center",}}>
-                                 <Image style={{  flex: 1, width: '100%', height:  '1000%',resizeMode: 'contain',}} source={this.props.item.cars_img}/>
+                                 <Image style={{  flex: 1, width: '100%', height:  '1000%',resizeMode: 'contain',}} source={ {uri: imglink + this.props.item.cars_img}}/>
                               </View>
             
             </View>
