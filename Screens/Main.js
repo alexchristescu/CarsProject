@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { StyleSheet,ScrollView, View, LayoutAnimation, TouchableOpacity, Text} from 'react-native';
+import { StyleSheet,ScrollView, View, LayoutAnimation, TouchableOpacity, Text, AsyncStorage} from 'react-native';
 import { ActionConst, Actions } from 'react-native-router-flux';
 import Accordian from '../Components/Accordian';
+
 
 import {WebCallClass} from "../Components/WebCallClass";
 
@@ -12,18 +13,20 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      AccordionData:[]
+      AccordionData:[],
+      hasToken:false,
+      
      }
   }
   componentDidMount(){
 
-
-    this.Cars();
+    console.log(['paramertru categorie'],this.props.idcateg)
+    this.Cars(this.props.idcateg);
 
 }
 
-Cars = async () => {
- var   result = await WebCall.Cars()
+    Cars = async (idcateg) => {
+         var   result = await WebCall.Cars(idcateg)
       alert(result)
 
     this.setState({AccordionData:result})
@@ -49,11 +52,15 @@ update_Layout = (index) => {
       }
     });
   }
+  LogOff = () => { AsyncStorage.removeItem('token').then(()=> Actions.LogIN()) }
 
   render() {
     return (
       <View style={styles.container}>
             <View style={styles.header}>
+            <TouchableOpacity style={styles.headerbtn} onPress = {() => this.LogOff()}  >
+                        <Text style={{color:"#fff", fontSize: 18,}}> LogOff </Text>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.headerbtn}  onPress={() => Actions.FilterScreen()}>
                         <Text style={{color:"#fff", fontSize: 18,}}> Filter </Text>
                     </TouchableOpacity>

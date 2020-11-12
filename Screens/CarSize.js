@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
 import {WebCallClass} from "../Components/WebCallClass";
+import { Actions } from 'react-native-router-flux';
 
 var WebCall = new WebCallClass();
 
@@ -8,19 +9,10 @@ class CarSize extends Component {
     constructor(props){
         super(props);
         this.state= {
-            element: [ {category:"compact", id:1,
-                image: require("../images/mercedesmlSUV2.png"),
-                },
-                {category:"SUV",
-                    id:2,
-                    image: require("../images/mercedesmlSUV2.png"),},
-                   
-                {category:"sedan", id:3,image: require("../images/mercedesmlSUV2.png"),},
-                    
-                {category:"sport", id:4,image: require("../images/mercedesmlSUV2.png"),}
-                  
-            ],
+            element: [ ],
             data:[],
+            
+            
         }
     }
     componentDidMount(){
@@ -40,6 +32,9 @@ class CarSize extends Component {
     
 
     render(){
+        var idcateg
+        let imgLink = 'http://192.168.2.224/CarRent/images/' 
+        console.log(this.state.data)
     return(
         <View style={styles.container}>
             <FlatList
@@ -47,13 +42,20 @@ class CarSize extends Component {
                 keyExtractor={(item) => item.class_id}
                 data={this.state.data}
                 renderItem={({item}) =>(
-                   <Text style={styles.item}>
-                                                        {item.name}
-                                                            </Text>
-                    
-                                
+                    <TouchableOpacity style={styles.item}  onPress={() => Actions.Main({idcateg: item.class_id})}> 
+                   <Text >
+                        {item.name}
+                        
+                        <Image style={{ width: 100, height: 100, flex: 1,  resizeMode: 'contain',}} source={ {uri: imgLink + item.cars_img2}}/>
+
+                        
+            </Text>
+                   </TouchableOpacity>
+                   
+                  
 
                 )}/>
+                
         </View>
     )}
 }

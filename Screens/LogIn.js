@@ -26,7 +26,7 @@ export default class LogIn extends Component {
       var result = await WebCall.login(this.state.user,this.state.pass)
         if (result === 1) {
 
-            Actions.Main();
+            Actions.Main({idcateg: 0});
             
 
         } else {
