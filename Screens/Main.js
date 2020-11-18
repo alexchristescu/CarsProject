@@ -21,7 +21,17 @@ export default class Main extends Component {
   componentDidMount(){
 
     console.log(['paramertru categorie'],this.props.idcateg)
-    this.Cars(this.props.idcateg);
+
+    if (  typeof (this.props.idcateg) == 'undefined') {
+
+      this.Cars(0);
+    } else {
+
+      this.Cars(this.props.idcateg);
+    }
+   
+
+
 
 }
 
@@ -53,13 +63,18 @@ update_Layout = (index) => {
     });
   }
   LogOff = () => { AsyncStorage.removeItem('token').then(()=> Actions.LogIN()) }
+  ClearFilter = () => {this.Cars(0);}
 
   render() {
+    
     return (
       <View style={styles.container}>
             <View style={styles.header}>
             <TouchableOpacity style={styles.headerbtn} onPress = {() => this.LogOff()}  >
                         <Text style={{color:"#fff", fontSize: 18,}}> LogOff </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.headerbtn}  onPress={() => this.ClearFilter()}>
+                        <Text style={{color:"#fff", fontSize: 18,}}> Clear filter </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.headerbtn}  onPress={() => Actions.FilterScreen()}>
                         <Text style={{color:"#fff", fontSize: 18,}}> Filter </Text>

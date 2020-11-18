@@ -31,6 +31,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Filter from './Screens/FilterScreen';
 import CarSize from './Screens/CarSize';
+import PriceScreen from './Screens/PriceScreen'
 
 export default class App extends Component {
   constructor(){
@@ -57,6 +58,7 @@ componentDidMount(){
           <Scene key="Main" initial={this.state.hasToken} component={Main} title="Main" />
           <Scene key= "FilterScreen" component={Filter} title="Filter"/>
           <Scene key = "CarSize" component={CarSize} title="CarSize"/>
+          <Scene key = "PriceScreen" component={PriceScreen} title="PriceScreen"/>
         </Scene>
       </Router>
     )

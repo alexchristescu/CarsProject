@@ -1,34 +1,72 @@
-import React, {useState} from "react"
+import React, {Component} from "react"
 import {View, Text, StyleSheet, FlatList, TouchableOpacity, Button} from 'react-native';
 import { ActionConst, Actions } from "react-native-router-flux";
+import {WebCallClass} from "../Components/WebCallClass";
 
-const Filter = ({navigation}) =>{
- const [element,setElement] = useState([
-     {category:"Car Size", id:1},
-     {category:"Price Range", id:2},
-     {category:"Transmission", id:3},
- ])
- return(
+
+var WebCall = new WebCallClass();
+
+class Filter extends Component{
+
+    constructor(props){
+        super(props)
+        this.state= {
+         data:[]
+
+        }
+    }
+
+    componentDidMount(){
+
+
+        this.Filter();
+    
+    }
+    
+    Filter = async () => {
+     var   result = await WebCall.Filter()
+      //   alert(result)
+    
+        this.setState({data:result})
+    
+    }
+
+    // FilterAction = async () => {
+    //     if(JSON.stringify(this.state.data.filter_id === '1')){
+    //         Actions.CarSize({filter: 1})
+    //     } else if(JSON.stringify(this.state.data.filter_id === '2')){
+    //         Actions.Main()
+    //     }else if(JSON.stringify(this.state.data.filter_id === '3')){
+    //         Actions.Main()
+    //     }
+    // }
+
+    OnFilterAction = (filterid) => {
+        Actions.CarSize({filterid: filterid})
+    }
+
+
+ render(){
+     console.log(this.state.data.filter_id)
+
+    return(
+
     <View style={styles.container}>
         <FlatList
-            keyExtractor={(item) => item.id}
-            data={element}
+            keyExtractor={(item) =>item.filter_id}
+            data={this.state.data}  
             renderItem={({item}) =>(
-                item.id === 1 ? <TouchableOpacity onPress={() => Actions.CarSize()}>
-                                            <Text style={styles.item}>{item.category}</Text>
+                <View>
+                <TouchableOpacity onPress={() => this.OnFilterAction(item.filter_id)}>
+                                            <Text style={styles.item}>{item.filter_category}</Text>
                                          </TouchableOpacity>
-                        : item.id === 2 ? <TouchableOpacity onPress={() => Actions.Register()}>
-                                                             <Text style={styles.item}>{item.category}</Text>
-                                                        </TouchableOpacity>
-                        : item.id === 3 ? <TouchableOpacity onPress={() => Actions.Main()}>
-                                                <Text style={styles.item}>{item.category}</Text>
-                                                    </TouchableOpacity>
-                        : null
+                        
+                      </View> 
             )}/>
 
 
     </View>
-        )
+        )}
 }
 
 const styles = StyleSheet.create({

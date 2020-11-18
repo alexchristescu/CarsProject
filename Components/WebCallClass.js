@@ -89,7 +89,7 @@ export  class WebCallClass {
 
   async Cars(idcateg){
     let raspuns2 = '';
-
+     console.debug(['on call'],idcateg )
     try {
       const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
@@ -155,6 +155,44 @@ export  class WebCallClass {
 
 
     return raspuns2;
+
+
+
+
+  }
+
+
+  async Filter(){
+    let raspuns3 = '';
+
+    try {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
+        timeout: 500000000,
+        body: JSON.stringify({
+
+          req: 'filter'
+        })
+      });
+      const responseToJson = await response.json();
+
+
+
+      raspuns3 = responseToJson;
+
+    }
+    catch (error) {
+   alert(error)
+      // ResultData.status = 0;
+      // ResultData.mes = error;
+
+      console.debug(['eroare logare'], error)
+      raspuns3 = 0;
+    }
+
+
+    return raspuns3;
 
 
 
