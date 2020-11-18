@@ -93,7 +93,7 @@ export default class LogIn extends Component {
         </View>
 
         <View style={{elevation: 5, borderRadius : 30, position: 'absolute', top : '40%', width: 350, height : 360, backgroundColor: '#ffffff'}}>
-            <View style={styles.footer}>
+            <View style={styles.footer}>   
                 <View style={{padding:15}}>
                     <Text style={styles.text_footer}>Username</Text>
 
