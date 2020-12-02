@@ -14,7 +14,7 @@ export  class WebCallClass {
     let a = '';
 
     try {
-      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -50,7 +50,7 @@ export  class WebCallClass {
     let raspuns = '';
 
     try {
-      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -87,15 +87,16 @@ export  class WebCallClass {
 
 
 
-  async Cars(idcateg){
+  async Cars(idcateg, pricecar){
     let raspuns2 = '';
      console.debug(['on call'],idcateg )
     try {
-      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
         body: JSON.stringify({
+          pricecar: pricecar,
           idcateg: idcateg,
           req: 'cars'
         })
@@ -128,7 +129,7 @@ export  class WebCallClass {
     let raspuns2 = '';
 
     try {
-      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -166,7 +167,7 @@ export  class WebCallClass {
     let raspuns3 = '';
 
     try {
-      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -200,6 +201,92 @@ export  class WebCallClass {
   }
 
 
+
+  async CarScreen(idcar){
+
+
+    console.debug(['carid'],idcar)
+    let raspuns4 = '';
+
+    try {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
+        timeout: 500000000,
+        body: JSON.stringify({
+          idcar: idcar,
+          req: 'carscreen'
+        })
+      });
+      const responseToJson = await response.json();
+
+
+
+      raspuns4 = responseToJson;
+     // alert(raspuns4)
+
+    }
+    catch (error) {
+   alert(error)
+      // ResultData.status = 0;
+      // ResultData.mes = error;
+
+      console.debug(['eroare logare'], error)
+      raspuns4 = 0;
+    }
+
+
+    return raspuns4;
+
+
+
+
+  }
+
+
+
+  async Register(username,password,email){
+
+
+    
+    let raspuns5 = '';
+
+    try {
+      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
+        timeout: 500000000,
+        body: JSON.stringify({
+          username: username,
+          password:password,
+          email:email,
+          req: 'register'
+        })
+      });
+      const responseToJson = await response.json();
+
+
+
+      raspuns5 = responseToJson;
+     // alert(raspuns4)
+
+    }
+    catch (error) {
+ 
+      // ResultData.status = 0;
+      // ResultData.mes = error;
+
+      console.debug(['eroare logare'], error)
+      raspuns5 = 0;
+    }
+
+
+    return raspuns5;
+
+
+
+
+  }
 
 
 

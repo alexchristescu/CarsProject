@@ -47,7 +47,7 @@ class Filter extends Component{
 
 
  render(){
-     console.log(this.state.data.filter_id)
+    
 
     return(
 

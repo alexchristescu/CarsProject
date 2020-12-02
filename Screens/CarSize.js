@@ -6,6 +6,8 @@ import Slider from '@react-native-community/slider';
 
 var WebCall = new WebCallClass();
 
+var pricecar
+
 class CarSize extends Component {
     constructor(props){
         super(props);
@@ -56,12 +58,12 @@ class CarSize extends Component {
 
 
 
-    drawForm() {
+drawForm() {
 
       if   (this.props.filterid == 1){
         var idcateg
     
-        let imgLink = 'http://192.168.2.224/CarRent/images/' 
+        let imgLink = 'http://192.168.2.229/CarRent/images/' 
             ViewDraw = 
             <FlatList
             numColumns={2}
@@ -69,7 +71,7 @@ class CarSize extends Component {
             data={this.state.data}
             renderItem={({item}) =>(
             
-                <TouchableOpacity style={styles.item}  onPress={() => Actions.Main({idcateg: item.class_id})}> 
+                <TouchableOpacity style={styles.item}  onPress={() => Actions.Main({idcateg: item.class_id, pricecar: this.state.pricecar})}> 
                <Text >
                     {item.name}
                     
@@ -89,28 +91,51 @@ class CarSize extends Component {
 
       } else  if   (this.props.filterid == 2){ 
         
+
         ViewDraw = 
         <View style={styles.priceContainer}>
             <Slider
             style={{width: 200, height: 40}}
+            value={30}
             minimumValue={30}
             maximumValue={100}
             minimumTrackTintColor="#FFFFFF"
             maximumTrackTintColor="#000000"
-            onValueChange = { val => this.setState({pricecar: val})}
+            onValueChange = { val => this.setState({pricecar: Math.round(val)})}
   />
-  <Text>{Math.round(this.state.pricecar)} </Text>
-  <Button
-  onPress={() => Actions.Main({idcateg:this.state.data.class_id})}
-  title="Select Price"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/>
+            <Text>{Math.round(this.state.pricecar)} </Text>
+            <Button
+                    onPress={() => Actions.Main({idcateg:this.state.data.class_id, pricecar: this.state.pricecar})}
+                    title="Select Price"
+                    color="#841584"
+                  
+            />
         </View>
     
+    } else  if   (this.props.filterid == 3){
+
+        ViewDraw =
+        <View   style={styles.transmissionContainer} >
+            <Button 
+            
+            title="Manual"
+            color="#841584"
+            
+            
+            ></Button>
+            <Button 
+            
+            title="Manual"
+            color="#841584"
+            
+            
+            ></Button>
+
+        </View>
     }
 
       return ViewDraw;
+
     }
 
 
@@ -163,6 +188,15 @@ const styles = StyleSheet.create({
         marginRight: 10,
         alignItems: "center",
         justifyContent: "center" 
+    },
+
+    transmissionContainer:{
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
+        flexDirection:"row",
+        alignItems: "center",
+        justifyContent: "space-around" 
     }
 
 })

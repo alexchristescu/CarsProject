@@ -32,6 +32,7 @@ import {
 import Filter from './Screens/FilterScreen';
 import CarSize from './Screens/CarSize';
 import PriceScreen from './Screens/PriceScreen'
+import BookScreen from './Screens/BookScreen'
 
 export default class App extends Component {
   constructor(){
@@ -59,6 +60,7 @@ componentDidMount(){
           <Scene key= "FilterScreen" component={Filter} title="Filter"/>
           <Scene key = "CarSize" component={CarSize} title="CarSize"/>
           <Scene key = "PriceScreen" component={PriceScreen} title="PriceScreen"/>
+          <Scene key ="BookScreen" component={BookScreen} title="Book"/>
         </Scene>
       </Router>
     )

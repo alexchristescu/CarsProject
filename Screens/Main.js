@@ -21,22 +21,39 @@ export default class Main extends Component {
   componentDidMount(){
 
     console.log(['paramertru categorie'],this.props.idcateg)
+    console.log(['paramertru pret'],this.props.pricecar)
 
-    if (  typeof (this.props.idcateg) == 'undefined') {
 
-      this.Cars(0);
-    } else {
+    if (  typeof (this.props.idcateg) == 'undefined' && typeof (this.props.pricecar) == 'undefined' ) {
 
-      this.Cars(this.props.idcateg);
-    }
+      this.Cars(0,0);
+    } else if(typeof (this.props.idcateg) !== 'undefined') {
+
+      this.Cars(this.props.idcateg,0);
+    } else if (  typeof (this.props.pricecar) !== 'undefined' ) {
+
+      this.Cars(0,this.props.pricecar);
+     } //else if( typeof (this.props.pricecar) !== 'undefined' ) {
+
+    //   this.Cars(0,this.props.pricecar);
+    // }
    
+
+    // if (  typeof (this.props.pricecar) == 'undefined' ) {
+
+    //   this.Cars(0,0);
+    // } else {
+
+    //   this.Cars(0,this.props.pricecar);
+    // }
+
 
 
 
 }
 
-    Cars = async (idcateg) => {
-         var   result = await WebCall.Cars(idcateg)
+    Cars = async (idcateg, pricecar) => {
+         var   result = await WebCall.Cars(idcateg, pricecar)
       alert(result)
 
     this.setState({AccordionData:result})
@@ -63,7 +80,7 @@ update_Layout = (index) => {
     });
   }
   LogOff = () => { AsyncStorage.removeItem('token').then(()=> Actions.LogIN()) }
-  ClearFilter = () => {this.Cars(0);}
+  ClearFilter = () => {this.Cars(0,0);}
 
   render() {
     

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, LayoutAnimation, Platform, Image, UIManager,} from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, LayoutAnimation, Platform, Image, UIManager,Button} from "react-native";
+import { Actions } from 'react-native-router-flux';
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -48,7 +49,7 @@ export default class Accordian extends Component{
   
   render() {
 
-          let imglink = 'http://192.168.2.224/CarRent/images/' 
+          let imglink = 'http://192.168.2.228/CarRent/images/' 
     return (
         <View style={styles.Panel_Holder}>
             
@@ -78,9 +79,22 @@ export default class Accordian extends Component{
                                  {this.props.item.gas_desc}
                                  
                                  </Text>
+                                 <Text>
+                               <Image source={require('../images/shifter2.png')} />
+                                 {this.props.item.transmission}
+                                 
+                                 </Text>
+                                 <Text>{this.props.item.car_id}</Text>
                                  </View>
                                  <View style={{width:220,height:300,alignItems:"center",justifyContent:"center",}}>
                                  <Image style={{  flex: 1, width: '100%', height:  '1000%',resizeMode: 'contain',}} source={ {uri: imglink + this.props.item.cars_img}}/>
+                                <View style={{bottom:20, }}>
+
+                                <TouchableOpacity style={styles.bookbtn}  onPress ={() => Actions.BookScreen({idcar:this.props.item.car_id})} >
+                                        <Text style={{color:"#fff", fontSize: 18,}}> Book </Text>
+                                  </TouchableOpacity>
+
+                                          </View>
                               </View>
             
             </View>
@@ -203,6 +217,22 @@ const styles = StyleSheet.create({
 
 
 
+    },
+    bookbtn:{
+      width:130,
+        height:30,
+      //  right:10,
+      borderRadius: 5,
+      elevation: 3,
+      justifyContent: "center",
+      alignItems: "center",
+      top:"2%",
+      backgroundColor:"#4287f5",
+        padding : 5,
+  
+  
+  
+  
     },
 
     Btn: {
