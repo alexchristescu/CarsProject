@@ -116,7 +116,7 @@ export default class BookScreen extends Component {
     const startDate  =  selectedStartDate ? selectedStartDate.toString() : '';
     const endDate = selectedEndDate ? selectedEndDate.toString() : '';
 
-      let imglink = 'http://192.168.2.229/CarRent/images/' 
+      let imglink = 'http://192.168.2.224/CarRent/images/' 
         return(
             
                 

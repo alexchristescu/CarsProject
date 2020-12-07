@@ -63,7 +63,7 @@ drawForm() {
       if   (this.props.filterid == 1){
         var idcateg
     
-        let imgLink = 'http://192.168.2.229/CarRent/images/' 
+        let imgLink = 'http://192.168.2.224/CarRent/images/' 
             ViewDraw = 
             <FlatList
             numColumns={2}
@@ -74,9 +74,9 @@ drawForm() {
                 <TouchableOpacity style={styles.item}  onPress={() => Actions.Main({idcateg: item.class_id, pricecar: this.state.pricecar})}> 
                <Text >
                     {item.name}
-                    
+                    <View >
                     <Image style={{ width: 100, height: 100, flex: 1,  resizeMode: 'contain',}} source={ {uri: imgLink + item.cars_img2}}/>
-
+                    </View>
                     
         </Text>
                </TouchableOpacity>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         textAlign:"center",
         borderColor: "#949292",
         padding:30,
-        height:220,
+        height:200,
         justifyContent: 'space-between',
 
         flexDirection:"column",

@@ -14,7 +14,7 @@ export  class WebCallClass {
     let a = '';
 
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -50,7 +50,7 @@ export  class WebCallClass {
     let raspuns = '';
 
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -91,7 +91,7 @@ export  class WebCallClass {
     let raspuns2 = '';
      console.debug(['on call'],idcateg )
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -129,7 +129,7 @@ export  class WebCallClass {
     let raspuns2 = '';
 
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -167,7 +167,7 @@ export  class WebCallClass {
     let raspuns3 = '';
 
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -209,7 +209,7 @@ export  class WebCallClass {
     let raspuns4 = '';
 
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,
@@ -252,7 +252,7 @@ export  class WebCallClass {
     let raspuns5 = '';
 
     try {
-      const response = await fetch('http://192.168.2.229/CarRent/queries.php', {
+      const response = await fetch('http://192.168.2.224/CarRent/queries.php', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
         timeout: 500000000,

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 var WebCall = new WebCallClass();
+const API_PATH = 'http://localhost/api/contact/index.php';
 
 export default  class SignUp extends  Component{
 
@@ -64,6 +65,28 @@ onRegisterPress = async () =>{
     }
 
 }
+
+handleFormSubmit = e => {
+    
+    axios({
+      method: 'post',
+      url: `${API_PATH}`,
+      headers: { 'content-type': 'application/json' },
+      data: this.state
+    })
+      .then(result => {
+        this.setState({
+          mailSent: result.data.sent
+        })
+      })
+      .catch(error => this.setState({ error: error.message }));
+  };
+
+  EmailAndRegister = () => {
+    this.handleFormSubmit();
+      this.onRegisterPress();
+     
+  }
 
 
 

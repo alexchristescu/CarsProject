@@ -49,7 +49,7 @@ export default class Accordian extends Component{
   
   render() {
 
-          let imglink = 'http://192.168.2.228/CarRent/images/' 
+          let imglink = 'http://192.168.2.224/CarRent/images/' 
     return (
         <View style={styles.Panel_Holder}>
             
